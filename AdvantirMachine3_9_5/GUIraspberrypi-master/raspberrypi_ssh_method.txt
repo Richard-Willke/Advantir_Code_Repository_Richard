@@ -1,0 +1,79 @@
+-connect lan direct to raspberry pi
+- edit connection- wired ethernet-  
+	-rename to "raspberrypi" 
+	-IPv4 => shared connection
+	-IPv6 => ignore
+-sudo apt-get install arp-scan (do only once)
+-ifconfig -a => check ethernet interface name example "eth0" or "enp3s0f1"
+-sudo arp-scan -interface=enp3s0f1 -localnet => find the ip addr of raspberry pi, example "10.42.0.99"
+	-sudo ssh pi@10.42.0.99
+	- password : raspberry
+##################################################################################################################
+ to boot up GUI script:
+	-edit at /home/pi/.config/lxsession/LXDE-pi/autostart
+	-add:
+		@lxterminal -e tmux start-server
+	-add a file nano .tmux.conf, inside write:
+		-new-session -d
+		-source-file /home/pi/GUIraspberrypi/tmux_sgo_conf.conf
+
+##################################################################################################################
+calibrate touch screen
+
+	apt install xinput_calibratorn 
+	cd /etc/X11/xorg.conf.d
+	sudo nano 40-libinput.conf
+	search for "touchscreen"
+		check below and find Option "CalibrationMatrix" "1 0 0 0 1 0 0 0 1"
+		change 3rd and 6th of "CalibrationMatrix" in decimal percentage to adjust x and y offset. 
+		for screen now is "1.12 0 -0.22 0 1.12 -0.20 0 0 1"
+##################################################################################################################
+to remove cursor:
+	sudo nano /etc/lightdm/lightdm.conf
+		- add "xserver-command=X -bs -core -nocursor" under line "[Seat*]"
+		
+##################################################################################################################
+# for git setup
+git clone - do ssh key 
+	 -then git clone <website>
+to update code in rpi:
+	-cd to/path/of/GUIraspberypi
+	-git add .
+	-git pull origin master
+		-enter username :raymondchaneee
+		-pwd : <fky>CCL
+##################################################################################################################
+to update code in git
+	-cd to/path/of/GUIraspberypi
+	-git add .
+	-git commit -m "<msg>"
+	-git push origin master
+		-enter username :raymondchaneee
+		-pwd : <fky>CCL
+##################################################################################################################
+only for PCB_3.7v need to add line below rc.local for LCD power stay on when boot up:
+	-gpio -g mode 17 out
+	-gpio -g write 17 1
+
+##################################################################################################################
+schedule every hour execute , 
+	-crontab -e
+	-add line "0 * * * * sh /home/pi/GUIraspberrypi/hourly-execute.sh" # to update git
+
+##################################################################################################################
+to create table , type following to URL with machine  ID specific
+http://swirlgoadvantir.com/create_table_set.php?id=<MACHINE ID>
+
+##################################################################################################################
+to create remote it unit :
+	1)reinstall connectd "sudo apt install connectd"
+	2)go to "sudo connectd_installer" to login and set device name 
+	3) device name "swirlgo_v3-7_unit-<MACHINE ID>
+	4) assign new application with ssh port 22, name it "sgo_ssh" 
+
+##########################################################
+to restart all pUSB and ETHERNET power 
+ON
+sudo sh -c 'echo 1-1 > /sys/bus/usb/drivers/usb/bind'
+OFF
+sudo sh -c 'echo 1-1 > /sys/bus/usb/drivers/usb/unbind'

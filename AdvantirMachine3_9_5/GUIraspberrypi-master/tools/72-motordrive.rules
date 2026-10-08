@@ -1,0 +1,17 @@
+
+
+
+# for other:
+# udevadm info -a -n /dev/<device> to find manufaturer
+# SUBSYSTEM=="tty" ATTRS{manufacturer}=="<change here>" SYMLINK+="motordrive"
+
+# copy this file to /etc/udev/rules.d/
+# #--> cp -i /home/pi/GUIraspberrypi/72-motordrive.rules /etc/udev/rules.d/
+# #--> udevadm control --reload-rules && udevadm trigger
+
+
+# for teensy control motor
+SUBSYSTEM=="tty" ATTRS{manufacturer}=="Teensyduino" SYMLINK+="motordrive"
+
+# for ESP32 control motor
+SUBSYSTEM=="tty" ATTRS{manufacturer}=="Silicon Labs" SYMLINK+="motordrive"

@@ -1,0 +1,24 @@
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=SG
+
+network={
+	ssid="Low Yi Dah"
+	psk="qwertywertyq"
+}
+network={
+	ssid="AndroidAPEAA4"
+	psk="uifa6933"
+}
+network={
+	ssid="Wireless@SG"
+	psk="2458"
+}
+network={
+	ssid="SITheelraise"
+	psk="Hr123456"
+}
+network={
+	ssid="ICD"
+	psk="guoori" 
+}

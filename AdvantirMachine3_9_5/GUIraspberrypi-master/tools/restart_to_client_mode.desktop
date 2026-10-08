@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=sh -c "python /home/pi/GUIraspberrypi/starttoclient.py; sudo reboot"
+Terminal=false
+Type=Application
+Name[en_GB]=restart_to_client_mode.desktop
+Icon=openterm

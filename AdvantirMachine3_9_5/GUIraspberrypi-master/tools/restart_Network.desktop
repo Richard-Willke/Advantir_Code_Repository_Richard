@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=sh -c "nmcli networking off; nmcli radio wifi off ; sleep 2; nmcli networking on; nmcli radio wifi on"
+Terminal=false
+Type=Application
+Name[en_GB]=restart_Network.desktop
+Icon=konsole
