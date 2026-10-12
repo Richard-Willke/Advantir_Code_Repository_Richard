@@ -4,6 +4,7 @@
 
 This repository acts as a backup of the code I wrote during my time as an R&D engineer intern at [Advantir Innovations](https://www.linkedin.com/company/advantir-innovations/about/). 
 
+The product in question is the SwirlGO v3. A video demonstration of the product is available on [YouTube](https://youtu.be/769j9YeaPcw). 
 
 ## About this repository
 This repository is divided in two main sections: Works done on the Advantir [SwirlGO v3.9.5](./AdvantirMachine3_9_5/) and [other prototypes](./Prototypes/). 
